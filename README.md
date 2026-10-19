@@ -79,8 +79,10 @@ docs/           architecture, ADR, roadmap, installation
 ## Contribuer
 
 Chaque évolution part d'une [issue](https://github.com/wanakin1/nami-data-platform/issues),
-se développe sur une branche `feat/<n°>-<slug>` et arrive dans `main` par une pull request dont la
-CI est verte.
+se développe sur une branche `feat/<n°>-<slug>` créée depuis `dev`, et revient dans `dev` par une
+pull request dont la CI est verte. À chaque version stable, `dev` est mergée dans `main` par une
+pull request : `main` ne contient que des versions stables. Le détail du cycle est dans
+[docs/setup.md](docs/setup.md#cycle-de-travail).
 
 ## Données
 
