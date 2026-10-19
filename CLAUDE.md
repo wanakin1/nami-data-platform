@@ -63,7 +63,9 @@ Vérification complète, identique à la CI :
 
 - Code, noms de fichiers et identifiants en anglais. Docs, issues, commits et PR en français.
 - Commits au format Conventional Commits : `feat:`, `fix:`, `test:`, `docs:`, `chore:`.
-- Une issue = une branche `feat/<n°>-<slug>` = une PR. Pas de commit direct sur `main`.
+- Une issue = une branche `feat/<n°>-<slug>` créée depuis `dev` = une PR vers `dev`.
+- `main` ne reçoit que des versions stables, par une PR `dev` → `main`. Aucun commit direct
+  sur `main` ni sur `dev`.
 - Annotations de type sur toutes les fonctions publiques.
 - Les tests n'appellent jamais le réseau : on simule les réponses de l'API.
 - Aucune donnée produite dans git (`data/` est ignoré).

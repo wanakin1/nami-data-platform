@@ -47,8 +47,27 @@ uv run ruff check . && uv run ruff format --check . && uv run pytest
 
 ## Cycle de travail
 
-1. Choisir une issue et créer la branche : `git switch -c feat/<n°>-<slug>`
-2. Coder et tester, en committant par petites étapes (`feat:`, `fix:`, `test:`, `docs:`, `chore:`)
-3. Pousser : `git push -u origin feat/<n°>-<slug>`
-4. Ouvrir la PR : `gh pr create --fill`, puis vérifier que la CI est verte
-5. Merger, puis revenir sur `main` : `git switch main && git pull`
+Deux branches permanentes :
+
+- `dev` : branche d'intégration, où arrive chaque issue terminée ;
+- `main` : branche par défaut, qui ne contient que des versions stables.
+
+Pour chaque issue :
+
+1. Partir de `dev` à jour : `git switch dev && git pull`
+2. Créer la branche : `git switch -c feat/<n°>-<slug>`
+3. Coder et tester, en committant par petites étapes (`feat:`, `fix:`, `test:`, `docs:`, `chore:`)
+4. Pousser : `git push -u origin feat/<n°>-<slug>`
+5. Ouvrir la PR vers `dev` : `gh pr create --base dev --fill`, puis vérifier que la CI est verte
+6. Merger, puis revenir sur `dev` : `git switch dev && git pull`
+
+À chaque version stable :
+
+1. Ouvrir la PR : `gh pr create --base main --head dev --title "Version <x.y>"`
+2. Lister dans sa description les issues livrées, une par ligne : `Closes #<n°>`
+3. CI verte, puis merger avec un commit de merge (`gh pr merge --merge`), sans squash : sinon
+   l'historique de `main` diverge de celui de `dev`.
+
+GitHub ne ferme une issue via `Closes #<n°>` que lorsque la PR est mergée dans la branche par
+défaut. Une PR vers `dev` ne ferme donc pas son issue : c'est la PR `dev` → `main` qui s'en
+charge.
