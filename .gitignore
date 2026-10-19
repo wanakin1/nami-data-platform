@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environnement virtuel (recréé par `uv sync`)
+.venv/
+
+# Caches des outils
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Données locales : produites par le pipeline, jamais versionnées
+/data/*
+!/data/.gitkeep
+*.duckdb
+*.duckdb.wal
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Éditeurs et système
+.vscode/
+.idea/
+.DS_Store
+
+# Claude Code : réglages personnels (les réglages partagés .claude/settings.json restent versionnés)
+.claude/settings.local.json

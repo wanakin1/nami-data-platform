@@ -1,0 +1,43 @@
+[project]
+name = "nami-data-platform"
+version = "0.1.0"
+description = "Plateforme de données météo et marines en architecture Bronze / Silver / Gold (Polars, DuckDB, Parquet)."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "wanakin" }]
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+# Le paquet s'importe sous le nom `nami` (dossier src/nami), pas `nami_data_platform`.
+module-name = "nami"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle : erreurs de style
+    "F",   # pyflakes : imports inutilisés, noms non définis
+    "I",   # isort : ordre des imports
+    "B",   # flake8-bugbear : pièges courants
+    "UP",  # pyupgrade : syntaxe Python moderne
+    "SIM", # flake8-simplify : code simplifiable
+    "N",   # pep8-naming : conventions de nommage
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers", "--strict-config"]

@@ -1,0 +1,42 @@
+name: Fonctionnalité
+description: Une nouvelle capacité de la plateforme
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Besoin
+      description: Quel problème résout-on, et pour qui ?
+      placeholder: "En tant que … je veux … afin de …"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critères d'acceptation
+      description: Format Étant donné / Quand / Alors, un critère par ligne.
+      placeholder: |
+        - [ ] Étant donné …, quand …, alors …
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Couche
+      options:
+        - Bronze
+        - Silver
+        - Gold
+        - Infra / outillage
+    validations:
+      required: true
+  - type: textarea
+    id: concepts
+    attributes:
+      label: Concepts à comprendre
+      description: Notions et docs à lire avant de coder (pas la solution).
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Hors périmètre
+      description: Ce qu'on ne fait volontairement pas dans cette issue.
